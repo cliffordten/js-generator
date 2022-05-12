@@ -35,6 +35,7 @@ const validateStatment = (yieldStatments) => {
 
 // Js Function that will Mimic the JavaScript generator function
 export const jsGenerator = (yieldStatments = []) => {
+  const stringifyStatement = JSON.stringify(yieldStatments);
   const error = validateStatment([...yieldStatments]);
   if (error) throw new Error(errorMessage);
 
@@ -46,7 +47,7 @@ export const jsGenerator = (yieldStatments = []) => {
    *  The object will contain the yield as key and function to fun before the yield is resolved
    * {yield1: run1, yield2:run2}
    */
-  const reduceYieldStatments = yieldStatments.reduce(
+  const reduceYieldStatments = JSON.parse(stringifyStatement).reduce(
     (prev, curr, inx) => ({
       ...prev,
       [JSON.stringify({ key: inx, val: curr.yield })]: curr.run,
@@ -63,7 +64,7 @@ export const jsGenerator = (yieldStatments = []) => {
         const func = reduceYieldStatments[currentYield];
         const value = JSON.parse(currentYield);
 
-        result = func(result || value.val, arg);
+        result = func?.(result || value.val, arg);
 
         yieldCount++;
 
