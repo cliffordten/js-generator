@@ -1,0 +1,17 @@
+{
+  "name": "js-generator",
+  "version": "1.0.0",
+  "description": "Mimicing the JavaScript generator function",
+  "main": "index.js",
+  "repository": "git@github.com:cliffordten/js-generator.git",
+  "author": "Teneng Clifford <cliffordteng5@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "compile": "node ./index.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "validate": "^5.2.0"
+  }
+}
